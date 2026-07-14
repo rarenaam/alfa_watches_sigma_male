@@ -207,7 +207,7 @@ const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(
 
 export default defineConfig({
   plugins,
-  base: '/alfa_watches_sigma_male/', // <-- DEZE REGEL HIER TOEVOEGEN!
+  base: '/', // <-- DEZE REGEL HIER TOEVOEGEN!
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
