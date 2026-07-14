@@ -28,7 +28,8 @@ jobs:
           cd client
           npm install --legacy-peer-deps
           npm run build
-          # DEZE REGEL VOEGEN WE TOE:
+          cd ..
+          # Nu we terug zijn in de hoofdmap, kunnen we de map wel vinden:
           cp dist/public/index.html dist/public/404.html
 
       # 3. Activeer Pages
