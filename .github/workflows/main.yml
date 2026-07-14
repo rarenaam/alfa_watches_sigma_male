@@ -32,10 +32,10 @@ jobs:
       # 3. Activeer Pages
       - uses: actions/configure-pages@v5
 
-      # 4. Upload het resultaat dat direct in de hoofdmap naast client staat (./dist)
+      # 4. Upload de correcte map (dist/public)
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./dist/public
 
       # 5. Zet de site live
       - uses: actions/deploy-pages@v4
