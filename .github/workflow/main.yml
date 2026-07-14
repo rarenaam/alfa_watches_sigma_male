@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: # Dit zorgt voor de handmatige startknop in GitHub
 
 permissions:
   contents: read
