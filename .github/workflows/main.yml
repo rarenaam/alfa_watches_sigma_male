@@ -22,11 +22,11 @@ jobs:
         with:
           node-version: 20
 
-      # 2. Installeer de pakketten en bouw het Vite project
+      # 2. Installeer pakketten (met legacy-peer-deps om versieconflicten te negeren) en bouw
       - name: Install and Build
         run: |
           cd client
-          npm install
+          npm install --legacy-peer-deps
           npm run build
 
       # 3. Configureer GitHub Pages
@@ -35,7 +35,7 @@ jobs:
       # 4. Upload de gebouwde map (./client/dist)
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./client
+          path: ./client/dist
 
       # 5. Zet de site live
       - uses: actions/deploy-pages@v4
