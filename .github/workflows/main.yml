@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,10 +17,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 1. Zorg dat Node.js klaarstaat op de server
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 2. Installeer de pakketten en bouw het Vite project
+      - name: Install and Build
+        run: |
+          cd client
+          npm install
+          npm run build
+
+      # 3. Configureer GitHub Pages
       - uses: actions/configure-pages@v5
 
+      # 4. Upload de gebouwde map (./client/dist)
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ./client
 
+      # 5. Zet de site live
       - uses: actions/deploy-pages@v4
