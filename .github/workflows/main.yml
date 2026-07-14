@@ -17,22 +17,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Zorg dat Node.js klaarstaat op de server
+      # 1. Zorg dat Node.js klaarstaat
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # 2. Installeer pakketten (met legacy-peer-deps om versieconflicten te negeren) en bouw
+      # 2. Installeer en bouw de site IN de client map
       - name: Install and Build
         run: |
           cd client
           npm install --legacy-peer-deps
           npm run build
 
-      # 3. Configureer GitHub Pages
+      # 3. Activeer Pages
       - uses: actions/configure-pages@v5
 
-      # 4. Upload de gebouwde map (./client/dist)
+      # 4. Upload het resultaat dat NU in client/dist staat
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./client/dist
