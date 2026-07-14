@@ -17,30 +17,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Zorg dat Node.js klaarstaat
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-     # 2. Installeer en bouw de site
       - name: Install and Build
         run: |
           cd client
           npm install --legacy-peer-deps
           npm run build
-          # Kopieer alles vanuit de build map naar de hoofdmap (./)
-          cp -r dist/public/* ../
-          cd ..
-          # Maak de 404 pagina voor de 'refresh' bug
-          cp index.html 404.html
+          # Kopieer index naar 404 in de build-map die Vite al heeft aangemaakt
+          cp ../dist/public/index.html ../dist/public/404.html
 
-      # 3. Activeer Pages
       - uses: actions/configure-pages@v5
 
-      # 4. Upload de hoofdmap (dit is nu je website)
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./ 
+          path: ./dist/public
 
-      # 5. Zet de site live
       - uses: actions/deploy-pages@v4
